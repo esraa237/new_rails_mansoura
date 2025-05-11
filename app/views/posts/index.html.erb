@@ -1,1 +1,18 @@
+
 <h1>Posts</h1>
+<%= link_to 'New Post', new_post_path %>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.title, post_path(post) %> |
+      <%= link_to 'Edit', edit_post_path(post) %> |
+      
+      <!-- Delete form (replacing the link with a form) -->
+      <%= form_with(model: post, url: post_path(post), method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>
+        <%= form.submit 'Delete' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
